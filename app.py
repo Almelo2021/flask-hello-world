@@ -4,6 +4,9 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World Cup!'
 
 @app.route('/bot', methods=['POST'])
 def bot():
