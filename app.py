@@ -4,7 +4,6 @@ import openai
 from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
-w = ''
 
 @app.route('/')
 def hello_world():
@@ -17,7 +16,7 @@ def bot():
     msg = resp.message()
     responded = False
     if 'Robin' in incoming_msg:
-        openai.api_key = "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"
+        openai.api_key = "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"
         # return a quote
         r = openai.Completion.create(
             model="text-curie-001",
@@ -28,7 +27,7 @@ def bot():
             frequency_penalty=0,
             presence_penalty=0
             )
-        w = r
+        print(r)
         if r["choices"][0]["finish_reason"] == "stop":
             quote = r["choices"][0]["text"]
         else:
@@ -50,5 +49,5 @@ def bot():
         msg.media('https://cataas.com/cat')
         responded = True
     if not responded:
-        msg.body(w)
+        msg.body('I only know about famous quotes and cats, sorry!')
     return str(resp)
