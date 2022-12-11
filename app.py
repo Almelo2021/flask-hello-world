@@ -29,7 +29,7 @@ def bot():
         })
         headers = {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer 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'
+          'Authorization': 'Bearer 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'
         }
 
         response = requests.request("POST", url, headers=headers, data=payload)
