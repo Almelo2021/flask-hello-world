@@ -1,6 +1,7 @@
 from flask import Flask, request
 import requests
 import openai
+import json
 from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
@@ -16,18 +17,24 @@ def bot():
     msg = resp.message()
     responded = False
     if 'Robin' in incoming_msg:
-        openai.api_key = "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"
-        # return a quote
-        r = openai.Completion.create(
-            model="text-curie-001",
-            prompt="Question: "+incoming_msg+"\n\nAnswer:",
-            temperature=0.7,
-            max_tokens=256,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0
-            )
-        print(r)
+        url = "https://api.openai.com/v1/completions"
+        payload = json.dumps({
+          "model": "text-curie-001",
+          "prompt": "Question: What song did Maroon 5 and Future collab on? Respond with the first line of the lyrics.\n\nAnswer:",
+          "temperature": 0.7,
+          "max_tokens": 256,
+          "top_p": 1,
+          "frequency_penalty": 0,
+          "presence_penalty": 0
+        })
+        headers = {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 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'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+        print(response.text)
+        r = response.json()
         if r["choices"][0]["finish_reason"] == "stop":
             quote = r["choices"][0]["text"]
         else:
