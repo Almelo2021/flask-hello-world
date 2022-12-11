@@ -49,5 +49,5 @@ def bot():
         msg.media('https://cataas.com/cat')
         responded = True
     if not responded:
-        msg.body('I only know about famous quotes and cats, sorry!')
+        msg.body("I don't know at this time, sorry.")
     return str(resp)
