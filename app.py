@@ -16,7 +16,7 @@ def bot():
     msg = resp.message()
     responded = False
     if 'Robin' in incoming_msg:
-        openai.api_key = "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"
+        openai.api_key = "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"
         # return a quote
         r = openai.Completion.create(
             model="text-curie-001",
@@ -27,6 +27,7 @@ def bot():
             frequency_penalty=0,
             presence_penalty=0
             )
+        print(r)
         if r["choices"][0]["finish_reason"] == "stop":
             quote = r["choices"][0]["text"]
         else:
