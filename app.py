@@ -4,6 +4,7 @@ import openai
 from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
+w = ''
 
 @app.route('/')
 def hello_world():
@@ -27,6 +28,7 @@ def bot():
             frequency_penalty=0,
             presence_penalty=0
             )
+        w = r
         if r["choices"][0]["finish_reason"] == "stop":
             quote = r["choices"][0]["text"]
         else:
@@ -48,5 +50,5 @@ def bot():
         msg.media('https://cataas.com/cat')
         responded = True
     if not responded:
-        msg.body("I don't know at this time, sorry!")
+        msg.body(w)
     return str(resp)
