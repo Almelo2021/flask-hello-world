@@ -27,7 +27,6 @@ def bot():
             frequency_penalty=0,
             presence_penalty=0
             )
-        print(r)
         if r["choices"][0]["finish_reason"] == "stop":
             quote = r["choices"][0]["text"]
         else:
