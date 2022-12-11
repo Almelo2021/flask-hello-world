@@ -35,10 +35,7 @@ def bot():
         response = requests.request("POST", url, headers=headers, data=payload)
         print(response.text)
         r = response.json()
-        if r["choices"][0]["finish_reason"] == "stop":
-            quote = r["choices"][0]["text"]
-        else:
-            quote = str(r)
+        quote = r["choices"][0]["text"]
         msg.body(quote)
         responded = True
     if 'quote' in incoming_msg:
@@ -55,6 +52,4 @@ def bot():
         # return a cat pic
         msg.media('https://cataas.com/cat')
         responded = True
-    if not responded:
-        msg.body('I only know about famous quotes and cats, sorry!')
     return str(resp)
