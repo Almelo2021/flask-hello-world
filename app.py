@@ -35,7 +35,10 @@ def bot():
         response = requests.request("POST", url, headers=headers, data=payload)
         print(response.text)
         r = response.json()
-        quote = r["choices"][0]["text"]
+        try:
+            quote = r["choices"][0]["text"]
+        except:
+            quote = r["error"]["message"]
         msg.body(quote)
         responded = True
     if 'quote' in incoming_msg:
