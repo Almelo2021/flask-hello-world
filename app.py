@@ -1,6 +1,5 @@
 from flask import Flask, request
 import requests
-import config
 import openai
 from twilio.twiml.messaging_response import MessagingResponse
 
