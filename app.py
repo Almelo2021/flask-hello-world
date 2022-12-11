@@ -17,7 +17,7 @@ def bot():
     msg = resp.message()
     responded = False
     if 'Robin' in incoming_msg:
-        openai.api_key = "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"
+        openai.api_key = "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"
         # return a quote
         r = openai.Completion.create(
             model="text-curie-001",
