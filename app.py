@@ -30,7 +30,7 @@ def bot():
         if r["choices"][0]["finish_reason"] == "stop":
             quote = r["choices"][0]["text"]
         else:
-            quote = "I don't know at this time, sorry."
+            quote = str(r)
         msg.body(quote)
         responded = True
     if 'quote' in incoming_msg:
@@ -48,5 +48,5 @@ def bot():
         msg.media('https://cataas.com/cat')
         responded = True
     if not responded:
-        msg.body("I don't know at this time, sorry.")
+        msg.body("I don't know at this time, sorry!")
     return str(resp)
